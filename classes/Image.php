@@ -32,7 +32,7 @@ class Image {
     /**
      * Sort all image to respective folder by their name
      */
-    public function getImageList(string $pathToImages, string $pathToDir) {
+    public function createSpecificFolders(string $pathToImages, string $pathToDir) {
         if(is_dir($pathToImages)) {
             foreach(scandir($pathToImages) as $file) {
                 if($file !== "." && $file !== "..") {
@@ -43,7 +43,21 @@ class Image {
                 }
             }
         }
-    } 
+    }
+    
+    public function moveToSpecificFolder(string $pathToImages, string $pathToSpecificDir) {
+        
+        if(is_dir($pathToImages)) {
+            foreach(scandir($pathToImages) as $file) {
+                if($file !== "." && $file !== "..") {
+                    $dirName = explode($pathToSpecificDir, $pathToSpecificDir.explode("-", $file)[0])[1];
+                    if(explode("-", $file)[0] === $dirName) {
+                        rename($pathToImages."/".$file, $pathToSpecificDir.explode("-", $file)[0]."/".$file);
+                    }
+                }
+            }
+        }
+    }
 
 }
 

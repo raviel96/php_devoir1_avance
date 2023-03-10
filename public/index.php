@@ -5,8 +5,8 @@ $image = new Image();
 $pathToImages = "../images/vrac";
 $pathToDir = "../images/";
 
-$image->getImageList($pathToImages, $pathToDir);
-
+$image->createSpecificFolders($pathToImages, $pathToDir);
+$image->moveToSpecificFolder($pathToImages, $pathToDir);
 
 
 ?>
